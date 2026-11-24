@@ -30,5 +30,18 @@
 4. افتح تبويب `Actions` وتأكد من تشغيل Workflow باسم `Deploy Madrasti to GitHub Pages`.
 5. بعد نجاح النشر، سيظهر رابط الموقع في صفحة `Settings → Pages`، ويكون غالباً بالشكل `https://aminwab606-star.github.io/l9rayaaminwah/`.
 
+## الكتب والفيديوهات الجامعية
+تحتوي مكتبة الجامعة على كتب مقترحة وروابط فهارس ببليوغرافية وصفحات ناشرين، وليس على ملفات PDF غير مرخصة. من العناوين المسجلة أو الموصى بها:
+- Théorie générale du droit marocain — Abdelwahed Chair.
+- Droit constitutionnel contemporain — Awatif Laghrissi.
+- Le Guide du thésard — Sara Elouadi.
+- Principes de l'économie — N. Gregory Mankiw وMark P. Taylor.
+- Macroéconomie - Semestre II — Abdelhakim El Jaddaoui.
+- Excel pour Economie — Abdellah Yousfi.
+- Introduction aux réseaux informatiques — Nourddine Enneya.
+- Progresser en informatique — Abdelkrim Lamim.
+
+وتتضمن الفيديوهات محاضرات من قناة FSJES Marrakech، وشروحات في القانون الدستوري والاقتصاد الجزئي والمحاسبة. تحقق من توافق كل مورد مع وحدتك ومحاضرات أستاذك.
+
 ## ملاحظة حول المحتوى
 هذه نسخة أولية فيها أمثلة تعليمية فقط، وليست مكتبة كاملة للمقررات. يجب التحقق من كل درس وفيديو وفق آخر مقرر رسمي والشعبة والمستوى قبل إضافته. لا توجد حالياً حسابات مستخدمين أو قاعدة بيانات أو حفظ للتقدم بين الأجهزة.
