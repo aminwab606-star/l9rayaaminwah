@@ -15,7 +15,7 @@
 <body>
   <header class="header">
     <a class="brand" href="#"><span class="mark">م</span><span><b>Madrasti</b><small>مدرستي · طريقك للتعلّم</small></span></a>
-    <nav><a href="#levels">المستويات</a><a href="#library">الدروس</a><a href="#sources">مصادر تعليمية</a></nav>
+    <nav><a href="#levels">المستويات</a><a href="#ai">المساعد الذكي</a><a href="#library">الدروس</a><a href="#sources">مصادر تعليمية</a></nav>
     <a class="top-button" href="#library">ابدأ التعلّم ←</a>
   </header>
 
@@ -25,7 +25,7 @@
         <span class="eyebrow">منصة تعليمية للمنهاج المغربي</span>
         <h1>قرا على راحتك،<br><em>وتعلّم بطريقتك.</em></h1>
         <p>من الابتدائي حتى الجامعة: اختار المستوى أو الكلية والمادة، قلب على الدرس، راجع الملخص، وطبّق مع التمارين والفيديوهات.</p>
-        <div class="actions"><a class="button primary" href="#library">اكتشف الدروس ←</a><a class="button secondary" href="#levels">تصفّح المستويات</a></div>
+        <div class="actions"><a class="button primary" href="#library">اكتشف الدروس ←</a><a class="button secondary" href="#ai">جرّب المساعد الذكي ✨</a></div>
         <div class="tip">✦ الفهم أولاً، ومن بعد التطبيق.</div>
       </div>
       <div class="hero-visual">
@@ -41,6 +41,62 @@
         <button class="level-card" data-stage="middle"><span>📐</span><b>التعليم الإعدادي</b><small>الأولى حتى الثالثة</small></button>
         <button class="level-card" data-stage="high"><span>🎓</span><b>الثانوي التأهيلي</b><small>الجذع المشترك والأولى والثانية باك</small></button>
         <button class="level-card" data-stage="university"><span>🏛️</span><b>التعليم الجامعي · La Fac</b><small>الإجازة، الماستر، الدكتوراه</small></button>
+      </div>
+    </section>
+
+
+    <section class="ai-section" id="ai">
+      <div class="wrap">
+        <div class="ai-heading">
+          <div><small>مساعد الدراسة الذكي</small><h2>سول، فهم، وتدرّب مع Madrasti AI 🤖</h2></div>
+          <p>وجد السؤال ديالك، وخذ مساعدة مناسبة للمستوى والمادة. اختار ChatGPT أو Gemini باش تكمل المحادثة.</p>
+        </div>
+        <div class="ai-panel">
+          <div class="ai-form">
+            <label>المستوى الدراسي
+              <select id="aiGrade"><option value="">اختار المستوى</option></select>
+            </label>
+            <label>المادة
+              <input id="aiSubject" list="aiSubjectList" placeholder="مثلاً: الرياضيات أو القانون">
+              <datalist id="aiSubjectList"></datalist>
+            </label>
+            <label>شنو بغيتي المساعد يدير؟
+              <select id="aiTask">
+                <option value="شرح الدرس من الصفر، بمثال بسيط ثم مثال من المقرر">شرح درس</option>
+                <option value="حل التمرين خطوة بخطوة، مع شرح سبب كل خطوة والتحقق من النتيجة">حل تمرين</option>
+                <option value="تلخيص النص أو الدرس إلى أفكار أساسية وتعريفات وقواعد">تلخيص درس</option>
+                <option value="اختباري بأسئلة متدرجة، سؤالاً واحداً في كل مرة، وانتظر جوابي قبل التصحيح">اختبرني</option>
+                <option value="إعداد برنامج مراجعة واقعي حسب الوقت والمواد التي أذكرها">برنامج مراجعة</option>
+                <option value="تصحيح جوابي، وبيان مواضع الخطأ وكيفية تحسينه دون تغيير المطلوب">تصحيح جوابي</option>
+              </select>
+            </label>
+            <label>لغة الشرح
+              <select id="aiLanguage">
+                <option value="الدارجة المغربية المبسطة">الدارجة المغربية</option>
+                <option value="العربية الفصحى السهلة">العربية الفصحى</option>
+                <option value="الفرنسية الواضحة">Français</option>
+              </select>
+            </label>
+          </div>
+          <label class="ai-question-label">كتب السؤال ديالك أو لسّق الدرس / التمرين
+            <textarea id="aiQuestion" rows="5" placeholder="مثلاً: شرح ليا قواعد الاشتقاق، وعطيني مثال محلول ثم تمرين نجربو بوحدي..."></textarea>
+          </label>
+          <div class="ai-actions">
+            <button class="button primary" id="makeAiPrompt" type="button">وجد ليا الطلب ✨</button>
+            <span id="aiStatus" class="ai-status" role="status" aria-live="polite">الطلب كيتوجد عندك، وما كنخزّنو حتى معلومة.</span>
+          </div>
+          <div id="aiPromptWrap" class="ai-prompt-wrap" hidden>
+            <label>الطلب الجاهز للمساعد الذكي
+              <textarea id="aiPrompt" rows="7" readonly></textarea>
+            </label>
+            <div class="ai-provider-actions">
+              <button class="button secondary" id="copyAiPrompt" type="button">نسخ الطلب</button>
+              <a class="button primary" id="openChatGPT" href="https://chatgpt.com/" target="_blank" rel="noopener">فتح ChatGPT ↗</a>
+              <a class="button secondary" id="openGemini" href="https://gemini.google.com/app" target="_blank" rel="noopener">فتح Gemini ↗</a>
+            </div>
+          </div>
+          <p class="ai-note">ملاحظة: هاد النسخة كتجهّز السؤال وكتفتحو فخدمة الذكاء الاصطناعي اللي تختار. خاصك تكون قادر تدخل لحسابك هناك. ما تحطش الاسم الكامل أو رقم الهاتف أو معلومات شخصية فالسؤال، وراجع الأجوبة مع الدرس والأستاذ.</p>
+        </div>
       </div>
     </section>
 
