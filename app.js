@@ -69,7 +69,50 @@ let stage="",kind="";
 function fillSelect(el,values){[...new Set(values)].sort((a,b)=>a.localeCompare(b,"ar")).forEach(v=>el.add(new Option(v,v)))}
 fillSelect(grade,Object.values(curriculum).flatMap(x=>x.grades));
 fillSelect(subject,Object.values(curriculum).flatMap(x=>x.subjects));
+
 fillSelect(track,Object.values(curriculum).flatMap(x=>x.tracks||[]));
+const aiGrade=$("aiGrade"),aiSubject=$("aiSubject"),aiTask=$("aiTask"),aiLanguage=$("aiLanguage"),aiQuestion=$("aiQuestion"),aiPrompt=$("aiPrompt"),aiPromptWrap=$("aiPromptWrap"),aiStatus=$("aiStatus");
+fillSelect(aiGrade,Object.values(curriculum).flatMap(x=>x.grades));
+const aiSubjects=[...new Set(Object.values(curriculum).flatMap(x=>x.subjects))].sort((a,b)=>a.localeCompare(b,"ar"));
+$("aiSubjectList").innerHTML=aiSubjects.map(s=>`<option value="${safe(s)}"></option>`).join("");
+function buildAiPrompt(){
+ const level=aiGrade.value||"غير محدد، ابدأ بسؤالي عن المستوى إذا كان ضرورياً";
+ const subjectName=aiSubject.value.trim()||"غير محددة";
+ const question=aiQuestion.value.trim();
+ if(!question){aiStatus.textContent="كتب السؤال أو لسّق الدرس / التمرين أولاً.";aiQuestion.focus();return;}
+ const prompt=[
+ "أنت Madrasti AI، مساعد تعليمي صبور يساعد المتعلم على الفهم والتعلم باستقلالية.",
+ "السياق: المنهاج المغربي.",
+ "المستوى: "+level+".",
+ "المادة: "+subjectName+".",
+ "المهمة: "+aiTask.value+".",
+ "لغة الشرح المطلوبة: "+aiLanguage.value+".",
+ "قواعد المساعدة:",
+ "- اشرح الفكرة بالتدرج وبكلمات مناسبة للمستوى.",
+ "- في حل التمارين، أظهر المعطيات والخطوات وسبب كل خطوة، ثم تحقق من الجواب.",
+ "- لا تخترع قاعدة أو معلومة من المقرر. إذا كانت المعطيات ناقصة، اطلب توضيحاً.",
+ "- لا تعطِ الجواب النهائي مباشرة في وضع الاختبار؛ اسأل سؤالاً واحداً وانتظر إجابتي.",
+ "- إذا وجدت خطأ في سؤالي أو محاولتي، صححه بلطف واشرح السبب.",
+ "سؤال / محتوى المتعلم:",
+ question
+ ].join("\\n");
+ aiPrompt.value=prompt;
+ aiPromptWrap.hidden=false;
+ aiStatus.textContent="وجدنا الطلب. نسخو، ومن بعد افتح ChatGPT أو Gemini ولسقو فالمحادثة.";
+ aiPrompt.focus();
+}
+$("makeAiPrompt").addEventListener("click",buildAiPrompt);
+$("copyAiPrompt").addEventListener("click",async()=>{
+ if(!aiPrompt.value){buildAiPrompt();if(!aiPrompt.value)return;}
+ try{
+  await navigator.clipboard.writeText(aiPrompt.value);
+  aiStatus.textContent="تنسخ الطلب بنجاح. فتح ChatGPT أو Gemini ولسقو.";
+ }catch(err){
+  aiPrompt.focus();aiPrompt.select();
+  aiStatus.textContent="ما قدرناش ننسخوه تلقائياً. حدّد النص وانسخو يدوياً.";
+ }
+});
+
 function safe(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function render(){
  const q=search.value.trim().toLowerCase();
