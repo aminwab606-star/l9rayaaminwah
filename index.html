@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Madrasti: دروس وملخصات وتمارين وفيديوهات للمنهاج المغربي من الابتدائي حتى الباكالوريا.">
+  <meta name="theme-color" content="#102b46">
+  <title>Madrasti | مدرستي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#"><span class="mark">م</span><span><b>Madrasti</b><small>مدرستي · طريقك للتعلّم</small></span></a>
+    <nav><a href="#levels">المستويات</a><a href="#library">الدروس</a><a href="#sources">مصادر تعليمية</a></nav>
+    <a class="top-button" href="#library">ابدأ التعلّم ←</a>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">منصة تعليمية للمنهاج المغربي</span>
+        <h1>قرا على راحتك،<br><em>وتعلّم بطريقتك.</em></h1>
+        <p>من الابتدائي حتى الثانية باك: اختار المستوى والمادة، قلب على الدرس، راجع الملخص، وطبّق مع التمارين والفيديوهات.</p>
+        <div class="actions"><a class="button primary" href="#library">اكتشف الدروس ←</a><a class="button secondary" href="#levels">تصفّح المستويات</a></div>
+        <div class="tip">✦ الفهم أولاً، ومن بعد التطبيق.</div>
+      </div>
+      <div class="hero-visual">
+        <div class="circle"></div><div class="book"><span>م</span><b>مدرستي</b><small>المعرفة تبدأ بخطوة</small></div>
+        <div class="float one">✎ خطّط وتعلّم</div><div class="float two">▶ فيديوهات تعليمية</div>
+      </div>
+    </section>
+
+    <section class="wrap levels" id="levels">
+      <div class="section-title"><div><small>اختار المرحلة</small><h2>فين وصلتي فالقراية؟</h2></div><p>اختار المرحلة باش تصفي الدروس ديالك بسرعة.</p></div>
+      <div class="level-grid">
+        <button class="level-card" data-stage="primary"><span>✏️</span><b>التعليم الابتدائي</b><small>الأول حتى السادس</small></button>
+        <button class="level-card" data-stage="middle"><span>📐</span><b>التعليم الإعدادي</b><small>الأولى حتى الثالثة</small></button>
+        <button class="level-card" data-stage="high"><span>🎓</span><b>الثانوي التأهيلي</b><small>الجذع المشترك والأولى والثانية باك</small></button>
+      </div>
+    </section>
+
+    <section class="library" id="library">
+      <div class="wrap">
+        <div class="section-title"><div><small>مكتبة التعلّم</small><h2>قلب على الدرس ديالك</h2></div><p>المحتوى كيتزاد ويتراجع تدريجياً حسب المقرر المغربي والشعبة.</p></div>
+        <div class="filters">
+          <label class="search">⌕ <input id="search" type="search" placeholder="قلب على درس، مادة، أو كلمة..."></label>
+          <label>المستوى<select id="grade"><option value="">جميع المستويات</option></select></label>
+          <label>المادة<select id="subject"><option value="">جميع المواد</option></select></label>
+          <label>الشعبة<select id="track"><option value="">جميع الشعب</option></select></label>
+          <button id="reset" class="reset">مسح الفلاتر</button>
+        </div>
+        <div class="list-tools"><span id="count">الموارد</span><div class="tabs"><button class="tab active" data-kind="">الكل</button><button class="tab" data-kind="lesson">الدروس</button><button class="tab" data-kind="exercise">التمارين</button><button class="tab" data-kind="video">الفيديوهات</button></div></div>
+        <div class="cards" id="cards"></div>
+        <div class="empty" id="empty" hidden><b>ما لقيناش نتائج</b><p>بدّل كلمة البحث أو اختار مستوى آخر.</p></div>
+        <p class="notice">ⓘ هادي النسخة الأولى من المنصة. فيها أمثلة توضيحية، وماشي جميع دروس المقررات واجدة دابا. غادي نزيدو المحتوى بالتدريج ونتحققو من مطابقته للبرنامج الرسمي.</p>
+      </div>
+    </section>
+
+    <section class="banner wrap"><span class="check">✓</span><div><small>طريقة المراجعة</small><h2>فهم الدرس، طبّق، ومن بعد قيّم راسك.</h2><p>كل درس نقدروا نضيفو ليه شرحاً، ملخصاً، تمارين مصححة، وفيديو مناسب.</p></div><a class="button light" href="#library">شوف المكتبة ←</a></section>
+
+    <section class="wrap sources" id="sources">
+      <div class="section-title"><div><small>مصادر مساعدة</small><h2>تعلّم من مصادر متنوعة</h2></div><p>روابط خارجية يمكن تعاونك فالمراجعة.</p></div>
+      <div class="source-grid">
+        <a href="https://soutiensco.men.gov.ma/" target="_blank" rel="noopener"><b>TelmidTICE</b><span>موارد تعليمية مدرسية ↗</span></a>
+        <a href="https://www.men.gov.ma/" target="_blank" rel="noopener"><b>وزارة التربية الوطنية</b><span>الوثائق والمراجع الرسمية ↗</span></a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener"><b>YouTube</b><span>شروحات وفيديوهات تعليمية ↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><a class="brand" href="#"><span class="mark">م</span><span><b>Madrasti</b><small>مدرستي · طريقك للتعلّم</small></span></a><span>منصة تعليمية مستقلة · <span id="year"></span></span></div></footer>
+
+  <div class="overlay" id="overlay" hidden>
+    <article class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close" id="close" aria-label="إغلاق">×</button>
+      <div class="chips"><span id="modalGrade"></span><span id="modalSubject"></span></div>
+      <h2 id="modalTitle"></h2><p id="modalDesc" class="muted"></p>
+      <div id="modalBody" class="lesson-body"></div>
+      <div id="videoBox"></div>
+      <div class="modal-actions"><a id="searchYoutube" class="button primary" target="_blank" rel="noopener">قلب على فيديو فـ YouTube ↗</a><button id="back" class="button secondary">رجوع</button></div>
+    </article>
+  </div>
+</body>
+</html>
