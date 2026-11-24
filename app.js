@@ -95,7 +95,7 @@ function buildAiPrompt(){
  "- إذا وجدت خطأ في سؤالي أو محاولتي، صححه بلطف واشرح السبب.",
  "سؤال / محتوى المتعلم:",
  question
- ].join("\\n");
+ ].join("\n");
  aiPrompt.value=prompt;
  aiPromptWrap.hidden=false;
  aiStatus.textContent="وجدنا الطلب. نسخو، ومن بعد افتح ChatGPT أو Gemini ولسقو فالمحادثة.";
