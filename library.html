@@ -1,6 +1,68 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#102b46"><title>المكتبة الشاملة | Madrasti</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="library.css"><script src="library.js" defer></script></head><body>
-<header><a class="brand" href="index.html"><span class="mark">م</span><span><b>Madrasti</b><small>مدرستي · المكتبة الشاملة</small></span></a><nav><a href="classroom.html">الأوراق والامتحانات</a><a href="index.html">الرئيسية</a></nav><a class="headbtn" href="#add">＋ أضف محتوى</a></header>
-<main><section class="hero"><div class="wrap"><small class="eyebrow">من الابتدائي حتى الجامعة</small><h1>مكتبة Madrasti<br><em>كل المعرفة فبلاصة وحدة.</em></h1><p>نظّم الدروس والملخصات والتمارين والفروض والامتحانات والكتب والفيديوهات حسب السلك والمستوى والمادة والشعبة. زيد المحتوى ديالك وخرّج نسخة احتياطية.</p><div class="stats"><span><b id="resourceCount">0</b> مورد</span><span>4 أسلاك دراسية</span><span>من الابتدائي حتى الدكتوراه</span></div></div></section>
-<section class="wrap browse"><div class="title-row"><div><small>تصفّح المكتبة</small><h2>قلب على المحتوى</h2></div><button id="clearFilters" class="ghost">مسح الفلاتر</button></div><div class="filters"><label>كلمة البحث<input id="search" placeholder="قلب على درس، امتحان، أو مادة..."></label><label>السلك<select id="stage"></select></label><label>المستوى<select id="grade"></select></label><label>المادة<select id="subject"></select></label><label>نوع المحتوى<select id="kind"><option value="">جميع الأنواع</option><option value="lesson">درس</option><option value="summary">ملخص</option><option value="exercise">تمرين</option><option value="exam">فرض / امتحان</option><option value="correction">تصحيح</option><option value="book">كتاب / مرجع</option><option value="video">فيديو</option><option value="file">ملف PDF</option></select></label></div><div id="results" class="cards"></div><p id="empty" class="empty" hidden>ما لقيناش محتوى بهاد الاختيارات. تقدر تضيف أول مورد من الاستمارة لتحت.</p></section>
-<section class="manage"><div class="wrap"><div class="title-row"><div><small>ساهم فالمكتبة</small><h2>زيد المحتوى ديالك</h2></div><p>عمّر البيانات وحفظ المورد. تقدر تزيد دروسك وملفات PDF وروابط الامتحانات والتصحيحات.</p></div><form id="add" class="form"><label>عنوان المحتوى<input id="title" required maxlength="140" placeholder="مثلاً: درس الاشتقاق، امتحان جهوي 2025..."></label><label>السلك<select id="newStage" required></select></label><label>المستوى<select id="newGrade" required></select></label><label>المادة<select id="newSubject" required></select></label><label>نوع المحتوى<select id="newKind"><option value="lesson">درس</option><option value="summary">ملخص</option><option value="exercise">تمرين</option><option value="exam">فرض / امتحان</option><option value="correction">تصحيح</option><option value="book">كتاب / مرجع</option><option value="video">فيديو</option><option value="file">ملف PDF</option></select></label><label>الشعبة أو الكلية (اختياري)<input id="track" placeholder="مثلاً: علوم رياضية أو كلية الحقوق"></label><label class="wide">رابط الملف أو الفيديو أو المصدر (اختياري)<input id="url" type="url" placeholder="https://..."></label><label class="wide">وصف أو محتوى الدرس<textarea id="body" rows="7" placeholder="كتب هنا الشرح، الملخص، التمارين أو ملاحظات التصحيح..."></textarea></label><div class="wide form-actions"><button class="primary" type="submit">حفظ فالمكتبة</button><button class="ghost" type="button" id="export">تصدير المحتوى ديالي JSON</button><label class="import">استيراد نسخة JSON<input type="file" id="import" accept=".json,application/json"></label></div><p id="notice" class="notice wide" aria-live="polite">مهم: المحتوى اللي كتزيد كيتحفظ فهاد المتصفح والجهاز فقط. باش يبان لجميع زوار الموقع، صدّر JSON وصيفطو لينا باش ندمجوه فالنسخة المنشورة.</p></form></div></section>
-<section class="wrap note"><h2>كيفاش تولّي المكتبة عمومية؟</h2><p>من بعد ما تجمع الدروس والامتحانات، صدّر ملف JSON واحتافظ به. يمكن دمج المحتوى فالنسخة المنشورة من Madrasti مع ملفات PDF المرخصة أو من إعدادك. ما ترفعش كتب محمية بحقوق النشر بلا إذن.</p></section></main><footer><div class="wrap">Madrasti · مكتبة تعليمية مغربية · <span id="year"></span></div></footer></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="مكتبة Madrasti التعليمية: دروس وملخصات وتمارين وامتحانات وموارد للمنهاج المغربي من الابتدائي إلى الجامعة.">
+<meta name="theme-color" content="#102b46">
+<title>المكتبة الشاملة | Madrasti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="library.css"><script src="library.js" defer></script>
+</head>
+<body>
+<header>
+<a class="brand" href="index.html"><span class="mark">م</span><span><b>Madrasti</b><small>مدرستي · المكتبة الشاملة</small></span></a>
+<nav><a href="index.html">الرئيسية</a><a href="classroom.html">الأوراق والامتحانات</a><a href="#add">ساهم بمحتوى</a></nav>
+<a class="headbtn" href="#add">＋ أضف محتوى</a>
+</header>
+<main>
+<section class="hero"><div class="wrap hero-grid">
+<div><small class="eyebrow">مكتبة تعليمية مغربية مفتوحة للتعلّم</small>
+<h1>المعرفة كاملة<br><em>قريبة ليك.</em></h1>
+<p>من الأول ابتدائي حتى الدكتوراه. قلب على الدروس والملخصات والتمارين والفروض والامتحانات والتصحيحات والمراجع. نظم المحتوى حسب السلك والمستوى والمادة والشعبة، وزيد الموارد ديالك.</p>
+<div class="stats"><span><b id="resourceCount">0</b><small>مورد متاح</small></span><span><b id="myCount">0</b><small>مورد ديالك</small></span><span><b>4</b><small>أسلاك دراسية</small></span><span><b>∞</b><small>مجال للإضافة</small></span></div></div>
+<div class="hero-note"><span>📚</span><b>منظّم، واضح، وقابل للتوسيع</b><p>درس ← فهم ← تمرين ← تقييم ← تصحيح</p><a href="#browse">بدا التصفّح ↓</a></div>
+</div></section>
+<section class="wrap browse" id="browse">
+<div class="title-row"><div><small>اكتشف الموارد</small><h2>شنو باغي تقرا اليوم؟</h2><p>استعمل البحث والفلاتر باش توصل للمحتوى بسرعة.</p></div><button id="clearFilters" class="ghost" type="button">مسح الفلاتر</button></div>
+<div class="filters">
+<label class="search-label">بحث شامل<input id="search" type="search" placeholder="عنوان، مفهوم، مادة، كلمة من الدرس..."></label>
+<label>السلك<select id="stage"></select></label>
+<label>المستوى<select id="grade"></select></label>
+<label>المادة<select id="subject"></select></label>
+<label>نوع المورد<select id="kind"><option value="">جميع الأنواع</option><option value="lesson">درس</option><option value="summary">ملخص</option><option value="exercise">تمرين</option><option value="exam">فرض / امتحان</option><option value="correction">تصحيح</option><option value="book">كتاب / مرجع</option><option value="video">فيديو</option><option value="file">ملف PDF</option></select></label>
+<label>الشعبة / التخصص<input id="trackFilter" placeholder="مثلاً: علوم فيزيائية، قانون..."></label>
+</div>
+<div class="result-bar"><span>النتائج: <b id="shownCount">0</b></span><span>المجموع في المكتبة: <b id="totalCount">0</b></span></div>
+<div id="results" class="cards"></div><p id="empty" class="empty" hidden>ما لقيناش نتيجة بهاد الاختيارات. جرّب تبدّل الفلاتر أو زيد أول مورد ديالك من الاستمارة.</p>
+</section>
+<section class="roadmap"><div class="wrap"><div class="title-row"><div><small>اختار الطريق ديالك</small><h2>المكتبة حسب السلك</h2><p>كل سلك فيه مستويات ومواد مختلفة. هاد الأزرار كتصفّي المكتبة مباشرة.</p></div></div>
+<div class="road-grid">
+<button data-jump="primary"><span>✏️</span><b>الابتدائي</b><small>الأول حتى السادس</small></button>
+<button data-jump="middle"><span>📐</span><b>الإعدادي</b><small>الأولى حتى الثالثة</small></button>
+<button data-jump="high"><span>🎓</span><b>الثانوي التأهيلي</b><small>الجذع المشترك والبكالوريا</small></button>
+<button data-jump="university"><span>🏛️</span><b>الجامعة</b><small>الإجازة والماستر والدكتوراه</small></button>
+</div></div></section>
+<section class="manage" id="add"><div class="wrap">
+<div class="title-row"><div><small>خلّي المعرفة تكبر</small><h2>أضف مورد جديد للمكتبة</h2></div><p>تقدر تضيف درس من كتابتك، ملخص، تمرين، امتحان، تصحيح أو رابط ملف وفيديو. ويمكنك تعديل أو حذف الموارد اللي زدتي.</p></div>
+<form id="addForm" class="form">
+<input type="hidden" id="editId">
+<label>عنوان المحتوى<input id="title" required maxlength="140" placeholder="مثلاً: درس النهايات، فرض الدورة الأولى..."></label>
+<label>السلك<select id="newStage" required></select></label>
+<label>المستوى<select id="newGrade" required></select></label>
+<label>المادة<select id="newSubject" required></select></label>
+<label>نوع المحتوى<select id="newKind"><option value="lesson">درس</option><option value="summary">ملخص</option><option value="exercise">تمرين</option><option value="exam">فرض / امتحان</option><option value="correction">تصحيح</option><option value="book">كتاب / مرجع</option><option value="video">فيديو</option><option value="file">ملف PDF</option></select></label>
+<label>الشعبة أو التخصص<input id="track" maxlength="100" placeholder="اختياري: علوم رياضية، آداب، كلية الحقوق..."></label>
+<label class="wide">رابط المصدر أو الملف<input id="url" type="url" placeholder="https://..."></label>
+<label class="wide">وصف قصير<textarea id="description" rows="2" maxlength="300" placeholder="شنو كيتناول هاد المورد؟"></textarea></label>
+<label class="wide">المحتوى أو ملاحظات الدرس<textarea id="body" rows="8" placeholder="كتب الشرح، القواعد، الأمثلة، التمارين أو التصحيح هنا..."></textarea></label>
+<div class="wide form-actions"><button class="primary" type="submit" id="saveButton">حفظ فالمكتبة</button><button class="ghost" type="button" id="cancelEdit" hidden>إلغاء التعديل</button><button class="ghost" type="button" id="export">تصدير النسخة الاحتياطية JSON</button><label class="import">استيراد نسخة JSON<input type="file" id="import" accept=".json,application/json"></label></div>
+<p id="notice" class="notice wide" role="status" aria-live="polite">ملاحظة مهمة: الإضافات كتتحفظ فالمتصفح والجهاز ديالك فقط. صدّر نسخة JSON باش تحتافظ بها، ومن بعد نقدر ندمجوها فالنسخة العمومية للموقع.</p>
+</form></div></section>
+<section class="wrap guide"><div><small>طريقة الاستعمال</small><h2>كيفاش تخدم بهاد المكتبة؟</h2></div>
+<div class="guide-grid"><article><b>01 · قلّب</b><p>كتب عنوان الدرس أو اختار السلك والمستوى والمادة ونوع المحتوى.</p></article><article><b>02 · قرا وطبّق</b><p>فتح المورد، راجع المفاهيم والأمثلة، وجرّب التمارين قبل ما تشوف التصحيح.</p></article><article><b>03 · زيد محتواك</b><p>عمّر الاستمارة. الموارد ديالك كتبان عندك مباشرة وتقدر تعدلها أو تحذفها.</p></article><article><b>04 · احتافظ بنسخة</b><p>صدّر JSON بانتظام. هادي نسخة احتياطية قابلة للاستيراد فمتصفح آخر.</p></article></div>
+<p class="copyright-note">استعمل محتوى من إعدادك أو موارد عندك الحق تشاركها. روابط الكتب والفيديوهات والملفات الخارجية خاصها تحترم حقوق أصحابها. المكتبة كتجمع الموارد وما كتدّعيش أن كل مقررات الوزارة منشورة كاملة بعد.</p>
+</section>
+</main>
+<footer><div class="wrap">Madrasti · مكتبة تعليمية مغربية · <span id="year"></span><a href="index.html">العودة للرئيسية ↑</a></div></footer>
+</body></html>
