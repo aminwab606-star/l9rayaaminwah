@@ -1,0 +1,29 @@
+const curriculum={
+primary:{label:"التعليم الابتدائي",grades:["الأول ابتدائي","الثاني ابتدائي","الثالث ابتدائي","الرابع ابتدائي","الخامس ابتدائي","السادس ابتدائي"],subjects:["اللغة العربية","اللغة الفرنسية","الرياضيات","النشاط العلمي","التربية الإسلامية","الاجتماعيات"]},
+middle:{label:"التعليم الإعدادي",grades:["الأولى إعدادي","الثانية إعدادي","الثالثة إعدادي"],subjects:["اللغة العربية","اللغة الفرنسية","اللغة الإنجليزية","الرياضيات","الفيزياء والكيمياء","علوم الحياة والأرض","الاجتماعيات","التربية الإسلامية"]},
+high:{label:"الثانوي التأهيلي",grades:["الجذع المشترك","الأولى باك","الثانية باك"],subjects:["اللغة العربية","اللغة الفرنسية","اللغة الإنجليزية","الرياضيات","الفيزياء والكيمياء","علوم الحياة والأرض","الفلسفة","التاريخ والجغرافيا","التربية الإسلامية","الاقتصاد العام والإحصاء"],tracks:["الجذع العلمي","الجذع الأدبي","علوم تجريبية","علوم رياضية","علوم اقتصادية","آداب وعلوم إنسانية","علوم وتكنولوجيات"]},
+university:{label:"التعليم الجامعي",grades:["الإجازة - S1","الإجازة - S2","الإجازة - S3","الإجازة - S4","الإجازة - S5","الإجازة - S6","الماستر - S1","الماستر - S2","الماستر - S3","الماستر - S4","الدكتوراه - السنة الأولى","الدكتوراه - السنة الثانية","الدكتوراه - السنة الثالثة"],subjects:["منهجية العمل الجامعي","مدخل إلى القانون","القانون الدستوري","القانون المدني","مبادئ الاقتصاد الجزئي","مبادئ الاقتصاد الكلي","المحاسبة العامة","مبادئ التدبير","التحليل الرياضي 1","الجبر","الإحصاء","الإعلاميات","الفيزياء","الكيمياء","علوم الحياة","اللسانيات","الأدب العربي","التاريخ","الجغرافيا","علم الاجتماع","علم النفس"],tracks:["كلية العلوم","كلية الآداب والعلوم الإنسانية","كلية العلوم القانونية والاقتصادية والاجتماعية","كلية الاقتصاد والتدبير","كلية العلوم والتقنيات","الكلية متعددة التخصصات"]}
+};
+const $=id=>document.getElementById(id),stageSelect=$("stageSelect"),gradeSelect=$("gradeSelect"),subjectSelect=$("subjectSelect"),trackSelect=$("trackSelect");
+function addOptions(el,items,placeholder){el.innerHTML="";el.add(new Option(placeholder,""));items.forEach(x=>el.add(new Option(x,x)));}
+Object.entries(curriculum).forEach(([key,value])=>stageSelect.add(new Option(value.label,key)));
+stageSelect.addEventListener("change",()=>{
+const stage=curriculum[stageSelect.value];
+if(!stage){gradeSelect.disabled=subjectSelect.disabled=true;addOptions(gradeSelect,[],"اختار السلك أولاً");addOptions(subjectSelect,[],"اختار السلك أولاً");$("trackWrap").hidden=true;$("selectionNote").textContent="اختار السلك باش تظهر المستويات والمواد المناسبة.";filterPacks("");return;}
+addOptions(gradeSelect,stage.grades,"اختار المستوى");addOptions(subjectSelect,stage.subjects,"اختار المادة");gradeSelect.disabled=subjectSelect.disabled=false;$("trackWrap").hidden=!stage.tracks;
+if(stage.tracks)addOptions(trackSelect,stage.tracks,"جميع الشعب والكليات");trackSelect.value="";$("selectionNote").textContent=stage.label+" مختار. حدّد المستوى والمادة باش تحضّر ورقتك.";filterPacks(stageSelect.value);
+});
+function filterPacks(key){document.querySelectorAll("[data-pack-stage]").forEach(card=>card.hidden=!!key&&card.dataset.packStage!==key);}
+function selection(){const s=curriculum[stageSelect.value];return{stage:s?s.label:"",grade:gradeSelect.value,subject:subjectSelect.value,track:trackSelect.value||""};}
+function esc(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function makeSheet(kind){
+const s=selection();if(!s.stage||!s.grade||!s.subject){$("printStatus").textContent="اختار السلك والمستوى والمادة أولاً.";return;}
+const topic=$("topicInput").value.trim()||(kind==="lesson"?"موضوع الدرس":"موضوع الاختبار"),isLesson=kind==="lesson";
+const parts=isLesson?["أهداف التعلم","المفاهيم والتعاريف الأساسية","القواعد أو الأفكار الرئيسية","مثال محلول","تمارين للتطبيق","ما الذي أحتاج إلى مراجعته؟"]:["تعليمات الاختبار","التمرين الأول","التمرين الثاني","التمرين الثالث / الوضعية الإدماجية","ملاحظات الأستاذ"];
+const body=parts.map((p,i)=>"<section><h2>"+p+"</h2>"+Array(isLesson?3:(i===0?1:4)).fill('<div class="line"></div>').join("")+"</section>").join("");
+const w=window.open("","_blank");if(!w){$("printStatus").textContent="المتصفح منع النافذة الجديدة. سمح بالنوافذ المنبثقة ثم عاود المحاولة.";return;}
+const title=isLesson?"ورقة درس وملخص":"ورقة اختبار وتقويم";
+w.document.write('<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>'+esc(title)+'</title><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"><style>@page{size:A4;margin:15mm}body{font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;color:#233542;line-height:1.8}.head{border-bottom:3px solid #168b7b;padding-bottom:6mm}.head h1{color:#102b46;margin:2mm 0}.meta{font-size:10pt;color:#64777e}.meta span{display:inline-block;border:1px solid #dce7e1;border-radius:4px;padding:2px 7px;margin:2px}h2{font-size:13pt;color:#102b46;margin:7mm 0 2mm}.line{height:10mm;border-bottom:1px solid #c5d0cb}.student{margin:5mm 0}.foot{margin-top:10mm;color:#89958f;font-size:8pt}@media print{button{display:none}}</style></head><body><header class="head"><small>Madrasti · مدرستي</small><h1>'+esc(title)+': '+esc(topic)+'</h1><div class="meta"><span>'+esc(s.stage)+'</span><span>'+esc(s.grade)+'</span><span>'+esc(s.subject)+'</span>'+(s.track?'<span>'+esc(s.track)+'</span>':"")+'</div></header><div class="student">الاسم والنسب: ............................... القسم: ............ التاريخ: ............</div>'+body+'<div class="foot">ورقة عمل شخصية قابلة للتعبئة والطباعة · Madrasti</div><script>window.onload=()=>setTimeout(()=>window.print(),600)<\/script></body></html>');
+w.document.close();$("printStatus").textContent="تفتحات ورقة الطباعة. اختار الطابعة أو Save as PDF باش تحفظها.";
+}
+$("lessonPrint").addEventListener("click",()=>makeSheet("lesson"));$("examPrint").addEventListener("click",()=>makeSheet("exam"));$("year").textContent=new Date().getFullYear();
